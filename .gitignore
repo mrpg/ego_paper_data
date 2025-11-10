@@ -1,0 +1,10 @@
+env
+out
+api_key
+scenarios/built.json
+*.pyc
+*pycache*
+*.egg-info
+build
+dist
+output

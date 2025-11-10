@@ -15,19 +15,15 @@ bsummary <- machinedata_main %>%
     group_by(gpt4, treat, round_) %>%
     summarize(mcoop = mean(coop), lower = ci(coop, 1), upper = ci(coop, 2))
 
-platform <- function (variable, value) {
-    ifelse(value, "GPT-4", "GPT-3.5")
-}
-
 cairo_pdf("output/plot1.pdf", width = 7, height = 4)
 
-ggplot(bsummary, aes(x = round_, y = mcoop, ymin = lower, ymax = upper, color = treat)) + 
-    geom_point() + 
+ggplot(bsummary, aes(x = round_, y = mcoop, ymin = lower, ymax = upper, color = treat)) +
+    geom_point() +
     geom_line() +
     scale_x_continuous(breaks = 1:10, labels = 1:10, minor_breaks = F) +
     scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
     geom_ribbon(alpha = 0.2) +
-    facet_wrap(~ gpt4, labeller = platform) +
+    facet_wrap(~ gpt4, labeller = labeller(gpt4 = c("FALSE" = "GPT-3.5", "TRUE" = "GPT-4"))) +
     labs(x = "Round", y = "Cooperation", color = "Treatment")
 
 dev.off()
