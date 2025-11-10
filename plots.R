@@ -15,6 +15,16 @@ bsummary <- machinedata_main %>%
     group_by(gpt4, treat, round_) %>%
     summarize(mcoop = mean(coop), lower = ci(coop, 1), upper = ci(coop, 2))
 
+# Generate Table 3 (Mean Percentage of Cooperative Choices per Platform and Frame)
+table3 <- bsummary %>%
+    group_by(gpt4, treat) %>%
+    summarize(mmcoop = mean(mcoop) * 100) %>%
+    ungroup()
+
+cat("\n=== Table 3: Mean Percentage of Cooperative Choices ===\n")
+print(table3, n = Inf)
+cat("\n")
+
 cairo_pdf("output/plot1.pdf", width = 7, height = 4)
 
 ggplot(bsummary, aes(x = round_, y = mcoop, ymin = lower, ymax = upper, color = treat)) +

@@ -192,6 +192,7 @@ The code can run on any standard desktop or laptop machine with R installed. No 
 **`plots.R`**
 - Generates all plots/figures for the paper
 - Sources helper libraries from `lib/preload.R` and `lib/data.R`
+- Prints Table 3 summary statistics to console (Mean Percentage of Cooperative Choices per Platform and Frame)
 - Creates the following plots in `output/`:
   - `plot1.pdf`: Cooperation conditional on platform and round (Figure 3 in paper)
   - `plot2.pdf`: Cooperation conditional on platform, round, and identity of the player (Figure 4 in paper)
@@ -291,6 +292,7 @@ The code is licensed under CC0 1.0 Universal (Public Domain Dedication). See LIC
 - The scripts can be run in any order (plots.R and tables.R are independent)
 - Both scripts will display progress messages during execution
 - The `lib/data.R` script displays "Please wait until the counter reaches ~86000" while computing derived variables
+- `plots.R` prints Table 3 summary statistics to the console during execution
 - Pre-computed output files are already included in the `output/` directory for comparison
 
 ## List of Tables and Programs
@@ -299,15 +301,16 @@ The provided code reproduces:
 
 - [X] All tables and figures in the paper
 
-### Figures
+### Figures and Summary Statistics
 
-| Figure # | Program | Line Range | Output File | Notes |
-|----------|---------|------------|-------------|-------|
-| Figure 3 | plots.R | 9-33 | output/plot1.pdf | Cooperation conditional on platform and round |
-| Figure 4 | plots.R | 36-88 | output/plot2.pdf | Cooperation conditional on platform, round, and identity of player |
-| Figure A1 | plots.R | 90-155 | output/plotA1.pdf | Cooperation conditional on platform, round, identity and initial choice |
-| Figure A2 | plots.R | 158-175 | output/plotA2.pdf | GPT-3.5 across all treatments |
-| Figure A3 | plots.R | 178-195 | output/plotA3.pdf | GPT-4 across all treatments |
+| Figure/Table # | Program | Line Range | Output File | Notes |
+|----------------|---------|------------|-------------|-------|
+| Table 3 | plots.R | 18-26 | Console output | Mean percentage of cooperative choices per platform and frame |
+| Figure 3 | plots.R | 28-37 | output/plot1.pdf | Cooperation conditional on platform and round |
+| Figure 4 | plots.R | 42-94 | output/plot2.pdf | Cooperation conditional on platform, round, and identity of player |
+| Figure A1 | plots.R | 96-161 | output/plotA1.pdf | Cooperation conditional on platform, round, identity and initial choice |
+| Figure A2 | plots.R | 164-181 | output/plotA2.pdf | GPT-3.5 across all treatments |
+| Figure A3 | plots.R | 184-201 | output/plotA3.pdf | GPT-4 across all treatments |
 
 ### Tables
 
