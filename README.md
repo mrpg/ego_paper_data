@@ -211,6 +211,20 @@ The code can run on any standard desktop or laptop machine with R installed. No 
   - `rt5.tex`: Effect of competitive frame in GPT-human interaction (Table A6)
   - `rt6.tex`: Cooperation by treatment and dyad composition (Table A7)
 
+**`tables2.R`**
+- Computes lower and upper bounds of cooperation rates that binomial tests reject at the 5% level
+- Sources helper libraries from `lib/preload.R` and `lib/data.R`
+- Defines a helper function `compute_bounds()` to systematically compute rejection bounds
+- Prints results to console for Table A1 (bounds per platform, frame, and round):
+  - GPT-3.5 bounds (base, enemy, competition treatments)
+  - GPT-4 bounds (base, enemy, competition treatments)
+  - Human bounds (base, enemy, competition treatments)
+- Uses binomial tests with alternatives "greater" (for lower bounds) and "less" (for upper bounds)
+- For each platform-frame-round combination, reports:
+  - Lower bound: lowest cooperation rate that cannot be rejected
+  - Upper bound: highest cooperation rate that cannot be rejected
+  - Sample size and observed cooperation rate
+
 ### Library Functions
 
 **`lib/data.R`**
@@ -277,22 +291,29 @@ The code is licensed under CC0 1.0 Universal (Public Domain Dedication). See LIC
    - Progress will be displayed as the script processes approximately 86,000 rows
 
 5. **Generate all tables:**
-   - Run the tables script:
+   - Run the main tables script:
      ```r
      source("tables.R")
      ```
    - This will take 2-5 minutes and create LaTeX table files in the `output/` directory
+   - Optionally, run the bounds analysis script:
+     ```r
+     source("tables2.R")
+     ```
+   - This will take 1-2 minutes and print Table A1 (cooperation rate bounds) to the console
 
 6. **Check output:**
    - All figures (PDF format) should appear in `output/`: plot1.pdf, plot2.pdf, plotA1.pdf, plotA2.pdf, plotA3.pdf
    - All tables (LaTeX format) should appear in `output/`: rt1.tex through rt6.tex
+   - Table A1 bounds will be printed to the console when running tables2.R
 
 ### Notes
 
-- The scripts can be run in any order (plots.R and tables.R are independent)
-- Both scripts will display progress messages during execution
+- The scripts can be run in any order (plots.R, tables.R, and tables2.R are independent)
+- All scripts will display progress messages during execution
 - The `lib/data.R` script displays "Please wait until the counter reaches ~86000" while computing derived variables
 - `plots.R` prints Table 3 summary statistics to the console during execution
+- `tables2.R` prints Table A1 bounds analysis to the console
 - Pre-computed output files are already included in the `output/` directory for comparison
 
 ## List of Tables and Programs
@@ -316,6 +337,7 @@ The provided code reproduces:
 
 | Table # | Program | Line Range | Output File | Notes |
 |---------|---------|------------|-------------|-------|
+| Table A1 | tables2.R | Full script | Console output | Lower and upper bounds of cooperation rates per platform, frame, and round |
 | Table A2 | tables.R | 6-40 | output/rt1.tex | Framing effect in GPT-GPT interaction |
 | Table A3 | tables.R | 43-85 | output/rt2.tex | Effect of second mover defection on first mover cooperation |
 | Table A4 | tables.R | 87-118 | output/rt3.tex | Framing effect in GPT-human interaction |
@@ -348,6 +370,7 @@ ego_paper_data/
 │   └── preload.R                   # Helper functions and package loading
 ├── plots.R                         # Script to generate all figures
 ├── tables.R                        # Script to generate all tables
+├── tables2.R                       # Script to compute cooperation rate bounds (Table A1)
 ├── output/                         # Generated output files
 │   ├── plot1.pdf                   # Figure 3
 │   ├── plot2.pdf                   # Figure 4
