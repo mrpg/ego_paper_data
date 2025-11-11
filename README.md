@@ -1,6 +1,6 @@
 # Replication Package for Engel, Grossmann & Ockenfels (2025)
 
-This repository contains raw data, experimental programs, and analysis code for the paper "Engel, Grossmann & Ockenfels (2025)".
+This repository contains raw data, experimental programs, and analysis code for the paper *Integrating Machine Behavior into Human Subject Experiments: A User-friendly Toolkit and an Application to Framed Prisoner’s Dilemmas* by Engel, Grossmann & Ockenfels (2025).
 
 ## Overview
 
