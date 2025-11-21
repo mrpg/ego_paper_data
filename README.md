@@ -34,7 +34,7 @@ The experimental instructions and prompts are fully documented in the `ego_human
 
 ### License for Data
 
-The data are licensed under a CC0 1.0 Universal (Public Domain Dedication). See LICENSE file for details.
+The data are licensed under CC0 1.0 Universal (Public Domain Dedication). See LICENSE file for details.
 
 ### Summary of Availability
 
@@ -262,7 +262,13 @@ The code can run on any standard desktop or laptop machine with R installed. No 
 
 ### License for Code
 
-The code is licensed under CC0 1.0 Universal (Public Domain Dedication). See LICENSE file for details.
+Unless otherwise specified below, all files in this repository are licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html) (GPL-3.0) due to GPL-licensed R package dependencies. See LICENSE-CODE for full license text.
+
+The following files are dual-licensed under GPL-3.0 AND CC0 1.0 (you may choose either license):
+- `*.csv`, `*.md`, `*.txt`, `*.pdf`, `*.tex`, `*.asc`
+- `ego_human/*.py`, `ego_human/*.html`
+
+See LICENSE (CC0) and LICENSE-CODE (GPL-3.0) for full legal texts.
 
 ## Instructions to Replicators
 
@@ -356,7 +362,8 @@ No external data sources or references are cited in this README. All data were g
 ```
 ego_paper_data/
 ├── README.md                       # This file
-├── LICENSE                         # CC0 1.0 Universal license
+├── LICENSE                         # CC0 1.0 Universal license (for data/documentation)
+├── LICENSE-CODE                    # GPL-3.0 license (for R code)
 ├── data/                           # Raw experimental data (CSV format)
 │   ├── data35_new.csv              # GPT-3.5 experimental data
 │   ├── data4_new.csv               # GPT-4 experimental data
