@@ -113,25 +113,44 @@ All data files are provided in CSV format (open, non-proprietary format readable
 | `data/all_apps_wide-2023-08-16.csv` | Authors (human experiments) | 163 participants (Aug 16 session), wide format | Yes |
 | `data/all_apps_wide-2023-08-17.csv` | Authors (human experiments) | 100 participants (Aug 17 session), wide format | Yes |
 
+**Data integrity verification:** The file `data/SHA256SUMS.asc` contains SHA-256 checksums for all data files, digitally signed with GnuPG. This allows replicators to verify that the data files have not been corrupted or modified. To verify data integrity on Linux/macOS, run:
+```bash
+cd data && gpg --quiet --decrypt SHA256SUMS.asc | sha256sum -c
+```
+Windows users can use equivalent tools.
+
 
 ## Computational Requirements
 
 ### Software Requirements
 
-The analysis code requires R and several packages. The code was last run successfully on R 4.x.
+- [X] The replication package contains one or more programs to install all dependencies and set up the necessary directory structure.
 
-**Required R packages:**
-- `dplyr`: Data manipulation
-- `tidyr`: Data reshaping (pivot functions)
-- `ggplot2`: Plotting
-- `Cairo`: PDF output for plots
-- `patchwork`: Combining multiple plots
-- `lmtest`: Testing linear regression models
-- `sandwich`: Robust covariance matrix estimation
-- `texreg`: Regression table formatting for LaTeX (custom fork required, see installation below)
-- `plm`: Panel data models
+The analysis code requires R and several packages. The code was last run successfully with R version 4.5.0.
+
+**Required R packages (with versions used):**
+- `dplyr` (1.1.4): Data manipulation
+- `tidyr` (1.3.1): Data reshaping (pivot functions)
+- `ggplot2` (4.0.1): Plotting
+- `Cairo` (1.7.0): PDF output for plots
+- `patchwork` (1.3.2): Combining multiple plots
+- `lmtest` (0.9.40): Testing linear regression models
+- `sandwich` (3.1.1): Robust covariance matrix estimation
+- `texreg` (1.39.3): Regression table formatting for LaTeX (custom fork required, see installation below)
+- `plm` (2.6.7): Panel data models
+- `remotes` (2.5.0): Required for installing texreg from GitHub
 
 **Installation:**
+
+To install all required packages automatically, run the provided installation script:
+
+```r
+source("install_dependencies.R")
+```
+
+Note: The installation script installs the latest versions from CRAN, which may be newer than the versions listed above. The versions listed above are those used by the authors and are known to work correctly. For exact reproducibility, you may need to install the specific versions listed. A complete R session information file (`sessionInfo.txt`) is provided in the repository for reference.
+
+Alternatively, you can install packages manually:
 
 ```r
 # Install from CRAN
@@ -175,6 +194,12 @@ Approximate storage space needed:
 The entire repository is approximately 12 MB (including data files of ~11 MB).
 
 #### Computational Details
+
+The code was last run successfully on:
+- **R version:** 4.5.0 (2025-04-11)
+- **Platform:** `x86_64-pc-linux-gnu`
+- **Operating System:** Debian GNU/Linux 13 (trixie)
+- **BLAS/LAPACK:** OpenBLAS 0.3.29
 
 The code can run on any standard desktop or laptop machine with R installed. No special hardware requirements.
 
@@ -276,7 +301,11 @@ See `LICENSE` (CC0) and `LICENSE-CODE` (GPL-3.0) for full legal texts.
 
 1. **Install R and required packages:**
    - Install R (version 4.x or later recommended)
-   - See "Software Requirements" section above for installation commands
+   - Run the installation script to install all required packages:
+     ```r
+     source("install_dependencies.R")
+     ```
+   - Alternatively, see "Software Requirements" section above for manual installation commands
 
 2. **Clone or download this repository:**
    - All data files are included in the `data/` directory
@@ -364,6 +393,8 @@ ego_paper_data/
 ├── README.md                       # This file
 ├── LICENSE                         # CC0 1.0 Universal license (for data/documentation)
 ├── LICENSE-CODE                    # GPL-3.0 license (for R code)
+├── install_dependencies.R          # Script to install all required R packages
+├── sessionInfo.txt                 # R session information with package versions
 ├── data/                           # Raw experimental data (CSV format)
 │   ├── data35_new.csv              # GPT-3.5 experimental data
 │   ├── data4_new.csv               # GPT-4 experimental data
